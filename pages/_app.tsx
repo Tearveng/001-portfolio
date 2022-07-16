@@ -28,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider>
+        
         <Component {...pageProps} />
       </ChakraProvider>
     </ApolloProvider>

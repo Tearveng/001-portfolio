@@ -23,6 +23,7 @@ import HeaderNavigator from "./nav/header";
 import Search from "./nav/search";
 import { useEffect } from "react";
 import Footer from "./nav/footer";
+import Head from "next/head";
 
 export interface POSTS {
   __typename: string;
@@ -61,7 +62,9 @@ const Home: NextPage = ({ posts }: any) => {
     // <div>{JSON.stringify(data)}</div>
     data && (
       <>
+      
       <Box>
+      
         <HeaderNavigator />
         <Search getData={posts.postCache} />
 
