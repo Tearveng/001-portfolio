@@ -6,7 +6,6 @@ import {
   Heading,
   Input,
   Stack,
-  useColorModeValue,
   HStack,
   Avatar,
   AvatarBadge,
@@ -14,21 +13,16 @@ import {
   Center,
   Box,
   Textarea,
-  FormHelperText,
   FormErrorMessage,
   Spinner,
-  Spacer,
-  CloseButton,
 } from "@chakra-ui/react";
 import { AddIcon, CloseIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import HeaderNavigator from "../nav/header";
-import { useContext, useEffect, useRef, useState } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { useRef, useState } from "react";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { SAVE_PHOTO, UPLOADPOST } from "../../lib/graphql/graphq";
-import { NextPage } from "next";
 import { Authentication } from "../../lib/authentication/auth";
-import { ControllInput, ImageInput, TextAreaInput } from "./input";
 import TextAreaEditor from "./textarea";
 import "react-quill/dist/quill.snow.css";
 import Footer from "../nav/footer";
@@ -41,6 +35,61 @@ interface Detail {
   image: string;
   imageUpload: string;
 }
+
+const ControllInput = ({ OnUpdate, type, title }: any) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+    OnUpdate(e.target.value);
+  };
+
+  return (
+    <Input
+      placeholder={title}
+      autoComplete="off"
+      _placeholder={{ color: "gray.500" }}
+      type={type}
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
+
+const TextAreaInput = ({ OnUpdate }: any) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+    OnUpdate(e.target.value);
+  };
+
+  return (
+    <Textarea
+      placeholder="Description"
+      _placeholder={{ color: "gray.500" }}
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
+const ImageInput = ({ OnUpdate, imageCloud }: any) => {
+  const handleChange = (e: any) => {
+    const [file] = e.target.files;
+    imageCloud(URL.createObjectURL(file));
+    OnUpdate(file);
+  };
+
+  return (
+    <Input
+      type="file"
+      display="none"
+      id="file_upload"
+      name="file-upload"
+      onChange={handleChange}
+    ></Input>
+  );
+};
 
 const UploadPost = () => {
   const router = useRouter();

@@ -16,7 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Waypoint } from "react-waypoint";
 import { Posts } from "../lib/posts/posts";
-import client from "./apollo-client";
+import {client} from "../lib/apollo-client";
 import { DateTimeFormat } from "../lib/format/format";
 import { ALL_POSTS_CACHE, POSTS } from "../lib/graphql/graphq";
 import HeaderNavigator from "./nav/header";

@@ -20,7 +20,26 @@ import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { SignInForm } from "../../lib/authentication/auth";
 import HeaderNavigator from "../nav/header";
-import { ControllInput } from "../upload/input";
+
+const ControllInput = ({ OnUpdate, type, title }: any) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+    OnUpdate(e.target.value);
+  };
+
+  return (
+    <Input
+      placeholder={title}
+      autoComplete="off"
+      _placeholder={{ color: "gray.500" }}
+      type={type}
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
 
 export default function SignIn() {
   const router = useRouter();
@@ -57,18 +76,6 @@ export default function SignIn() {
       router.push({ pathname: "/" });
     }
   };
-
-  // if (data) {
-  //   const { error } = data.userLogin;
-  //   console.log(error);
-  //   if (error) {
-  //     receiveError = error;
-  //   } else {
-  //     router.push({ pathname: "/" });
-  //   }
-  // }
-  // console.log(email.current);
-  // console.log(password.current);
 
   return (
     <Box>

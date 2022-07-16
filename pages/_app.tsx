@@ -2,9 +2,9 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ApolloProvider } from "@apollo/client";
-import client from "./apollo-client";
+import {client} from "../lib/apollo-client";
 import { useEffect, useState } from "react";
-import { setToken } from "./token/getToken";
+import { setToken } from "../lib/token/getToken";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);

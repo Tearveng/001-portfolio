@@ -1,7 +1,4 @@
-import {
-  MoonIcon,
-  SunIcon,
-} from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -19,7 +16,7 @@ import {
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Authentication, Logout } from "../../lib/authentication/auth";
-import client from "../apollo-client";
+import { client } from "../../lib/apollo-client";
 
 interface Me {
   me: {
